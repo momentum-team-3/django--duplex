@@ -9,7 +9,7 @@ In addition to those small features, come up with your own features to make your
 # Rules for all projects
 
 * Your application should be styled. It should be usable and aesthetically neutral, at a minimum. You can use a library or you can write custom css, or both. It is up to you.
-* Your application should be able to run from scratch by downloading the repo, running `poetry install`, `poetry shell`, `python manage.py migrate`, and `python manage.py runserver`. If there are any other steps necessary, please put them in a README.md file. In other words, document this project like a professional would.
+* Your application should be able to run from scratch by downloading the repo, running `pipenv install`, `pipenv shell`, `python manage.py migrate`, and `python manage.py runserver`. If there are any other steps necessary, please put them in a README.md file. In other words, document this project like a professional would.
 
 ## Stretch goal for each project: trying new things
 
@@ -79,3 +79,71 @@ For this project, you will build a Django application that you can use to help t
 You can make your forms a lot more usable by adding JavaScript -- to begin with, you can have a button for making a record that then shows a form without reloading the page.
 
 If you want to add charts to your habits, you'll definitely need JavaScript. Check out [Charts.js](https://www.chartjs.org/).
+
+## Project 3: Django Music Collection
+
+Create an application to keep track of all the music albums you own. You can choose what fields each album should have, but it should have at least these three:
+
+- title
+- artist
+- year released
+
+Your Django app should allow you to do the following:
+
+- See a list of all albums (this should be your homepage)
+- Create a new album
+- See a detail page for one existing album
+- Edit an existing album
+- Delete an existing album
+
+Your app should have at least minimal styling using a CSS library like Tachyons or Bootstrap.
+
+A good place to start is planning out your model and making sure you can make an Album object in the console. Make some simple wireframes to sketch out the different functions of the app on the list above, and the urls (and corresponding view functions) you will need to make each page show up. Start with the home page.
+
+### Spicy options 🌶️🌶️🌶️
+
+- Add an Artist model and create a foreign key on the Album model to associate the two.
+  - Show the Artist and their other albums on the album detail page, with links to those album detail pages.
+- Create an way to mark an album with a star rating.
+- Add an option to sort all albums on the list page by title, year, or artist.
+
+## Getting up and running
+
+In your project directory, run the following to install the project dependencies, set up your virtual environment, and run initial migrations. Note that any text enclosed in '<' and '>'
+is not meant to be read literally, but refers to choices you make depending on which project you chose.
+
+```
+> pipenv install --python 3.8
+> pipenv shell
+> pipenv install django django-extensions django-debug-toolbar django-environ
+> django-admin startproject <trackerapp OR musicapp OR snippetapp>
+> cd <trackerapp OR musicapp OR snippetapp>
+> mkdir templates
+> mkdir static
+> python3 manage.py startapp <habits OR albums OR snippets>
+```
+
+If you decide you want a custom user class, you should also run
+
+```
+> python3 manage.py startapp users
+```
+
+Finally, enter
+
+```
+> python3 manage.py migrate
+```
+
+Don't forget to have ONE team member run these commands, then push their repo for others to pull down.
+
+### Django Project Template
+
+This project was generated from the Momentum Django project template. This template sets up some minimal changes:
+
+- [django-extensions](https://django-extensions.readthedocs.io/en/latest/) and [django-debug-toolbar](https://django-debug-toolbar.readthedocs.io/en/latest/) are both installed and set up.
+- [django-environ](https://django-environ.readthedocs.io/en/latest/) is set up and the `DEBUG`, `SECRET_KEY`, and `DATABASES` settings are set by this package.
+- There is a custom user model defined in `users.models.User`.
+- There is a `templates/` and a `static/` directory at the top level, both of which are set up to be used.
+- A `.gitignore` file is provided.
+- [Pipenv](https://pipenv.pypa.io/en/latest/) is used to manage dependencies.
